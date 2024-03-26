@@ -27,26 +27,26 @@ void SymTable_free(SymTable_T oSymTable);
 size_t SymTable_getLength(SymTable_T oSymTable);
 
 /*--------------------------------------------------------------------*/
-/*If oSymtable DOES NOT contain contain binding with pcKey, put new 
-    binding consisting of pcKey and pcValue and return 1(true). Otherwise,
-    leave oSymtable unchanged and return 0. Return 0 if insufficient memory.*/
+/*If oSymTable DOES NOT contain contain binding with pcKey, put new 
+    binding consisting of pcKey and pvValue and return 1(true). Otherwise,
+    leave oSymTable unchanged and return 0. Return 0 if insufficient memory.*/
 int SymTable_put(SymTable_T oSymTable,
     const char *pcKey, const void *pvValue);
 
 /*--------------------------------------------------------------------*/
-/*If oSymtable contains binding with pcKey, replace that bindings value
-    with pcValue and return old value. Otherwise, leave oSymtable unchanged
+/*If oSymTable contains binding with pcKey, replace that bindings value
+    with pvValue and return old value. Otherwise, leave oSymtable unchanged
     and return NULL*/
 void *SymTable_replace(SymTable_T oSymTable,
     const char *pcKey, const void *pvValue);
 
 /*--------------------------------------------------------------------*/
-/*Return 1(TRUE) if oSymtable contains binding with pcKey, and 0(FALSE)
+/*Return 1(TRUE) if oSymTable contains binding with pcKey, and 0(FALSE)
     otherwise*/
 int SymTable_contains(SymTable_T oSymTable, const char *pcKey);
 
 /*--------------------------------------------------------------------*/
-/*Return value of binding within pSymtable whose key is pcKey or NULL
+/*Return value of binding within pSymTable whose key is pcKey or NULL
     if no such binding exists*/
 void *SymTable_get(SymTable_T oSymTable, const char *pcKey);
 

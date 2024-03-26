@@ -11,8 +11,7 @@
 /* # of buckets in hashtable */
 static const size_t auBucketCounts[] = {509, 1021}; 
 
-/* Each item is stored in a stNode.  stNodes are linked to
-   form a list.  */
+/* Each item is stored in a stNode.  stNodes are linked to form a list.  */
 struct stNode {
    /* pointer pointing to data. */
    const void *pvValue;
@@ -23,7 +22,7 @@ struct stNode {
 };
 
 
-/* A SymTable is a "dummy" node that points to the first stNode. */
+/* A SymTable "dummy" node to point to the first stNode. */
 struct SymTable {
    /* The address of the array of Nodes */
    /* Second * makes it an array of pointers */
@@ -55,7 +54,7 @@ static size_t SymTable_hash(const char *pcKey, size_t uBucketCount)
     size_t numberofBuckets = 509; 
     oSymtable = (SymTable_T)malloc(sizeof(struct SymTable));
     if (oSymtable == NULL)
-      return NULL;
+        return NULL;
     
     oSymtable->psFirstNode = 
         (struct stNode**)malloc(sizeof(struct stNode*)*numberofBuckets);
@@ -114,16 +113,20 @@ int SymTable_put(SymTable_T oSymTable,
     psNewNode = (struct stNode*)malloc(sizeof(struct stNode));
     if (psNewNode == NULL)
         return 0;
+    
     psNewNode->pcKey = (char*)malloc(strlen(pcKey) + 1);
     if(psNewNode->pcKey == NULL){
         free(psNewNode);
         return 0; 
     }
+
     /*make defensive copy*/
     strcpy((char*)psNewNode->pcKey,pcKey);
     
     hashNumber = SymTable_hash(pcKey, oSymTable->auBucketCounts);
+    
     psNewNode->pvValue = pvValue;
+    
     psNewNode->psNextNode = oSymTable->psFirstNode[hashNumber];
     oSymTable->psFirstNode[hashNumber] = psNewNode;
     oSymTable->length++;
