@@ -46,7 +46,7 @@ void *SymTable_replace(SymTable_T oSymTable,
 int SymTable_contains(SymTable_T oSymTable, const char *pcKey);
 
 /*--------------------------------------------------------------------*/
-/*Return value of binding within pSymTable whose key is pcKey or NULL
+/*Return value of binding within oSymTable whose key is pcKey or NULL
     if no such binding exists*/
 void *SymTable_get(SymTable_T oSymTable, const char *pcKey);
 

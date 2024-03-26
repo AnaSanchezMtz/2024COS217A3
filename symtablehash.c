@@ -33,7 +33,8 @@ struct SymTable {
    size_t auBucketCounts; 
 };
 
-
+/* Return a hash code for pcKey that is between 0 and uBucketCount-1,
+   inclusive. */
 static size_t SymTable_hash(const char *pcKey, size_t uBucketCount)
 {
    const size_t HASH_MULTIPLIER = 65599;
@@ -126,7 +127,7 @@ int SymTable_put(SymTable_T oSymTable,
     hashNumber = SymTable_hash(pcKey, oSymTable->auBucketCounts);
     
     psNewNode->pvValue = pvValue;
-    
+
     psNewNode->psNextNode = oSymTable->psFirstNode[hashNumber];
     oSymTable->psFirstNode[hashNumber] = psNewNode;
     oSymTable->length++;
@@ -246,7 +247,6 @@ void SymTable_map(SymTable_T oSymTable,
 
     assert(oSymTable != NULL);
     assert(pfApply != NULL);
-
 
     for(i = 0; i < oSymTable->auBucketCounts; i++){
         for (psCurrentNode = oSymTable->psFirstNode[i];
